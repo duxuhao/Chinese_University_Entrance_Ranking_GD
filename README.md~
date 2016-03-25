@@ -1,0 +1,15 @@
+# Chinese_University_Entrance_Ranking_GD
+This is a repo to predict the university admission ranking in different year
+
+## The main questions in this project
+* Can we predict the approximate admission lowest ranking of different universities?
+* If we can, what parameters is related to it?
+** The admission quatities?
+** The previous admission lowest ranking?
+** The university ranking of those years?
+** The media impact of those years?
+** The ecomonic of the city?
+** The house price of the city?
+** The participate students number?
+
+
