@@ -2,15 +2,15 @@
 This is a repo to predict the university admission ranking in different year
 
 ## The main questions in this project
-* Can we predict the approximate admission lowest ranking of different universities?
-* If we can, what parameters is related to it?
-** The admission quatities?
-** The previous admission lowest ranking?
-** The university ranking of those years?
-** The media impact of those years?
-** The ecomonic of the city?
-** The house price of the city?
-** The participate students number?
+- Can we predict the approximate admission lowest ranking of different universities?
+- If we can, what parameters is related to it?
+ - The admission quatities?
+ - The previous admission lowest ranking?
+ - The university ranking of those years?
+ - The media impact of those years?
+ - The ecomonic of the city?
+ - The house price of the city?
+ - The participate students number?
 
 All the above variables may be able to influence the choice of each student, so that may influence the ranking. In this project, R will be used in cleaning and merging the data, doing the data pre-process like PCA and using some machinery algorithm to do the prediction.
 
