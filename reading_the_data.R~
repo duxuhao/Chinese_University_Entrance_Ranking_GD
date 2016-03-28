@@ -23,7 +23,6 @@ for (a in 2010:2015) {
 	Temp2 <- cbind(as.character(LiberalArtName), rep("LiberalArt",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
 	T <- rbind(Temp, Temp2)
 	UniversityAdmission <- rbind(UniversityAdmission,T)
-	print(a)
 }
 
 colnames(UniversityAdmission) <- c("University_Name","Topic", "Plan_Number", "Lowest_Ranking", "Year")
@@ -62,17 +61,17 @@ for (a in 2009:2014) {
 	}
 	
 	Quantity <- Quantity/Quantity[1]
-	Temp <- cbind(as.character(UniName),  Quantity, rep(a+1,dim(Media)[1]))
+	Temp <- cbind(as.character(UniName),  Quantity, rep(a,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
-	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a+1,dim(GDPData)[1]))
+	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a,dim(GDPData)[1]))
 	GDP <- rbind(GDP,Temp2)
-	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a+1,dim(RankingData)[1]))
+	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a,dim(RankingData)[1]))
 	Ranking <- rbind(Ranking,Temp3)
 }
 
-colnames(MediaReportQuantity) <- c("University_Name","Province","Media_Impact", "Year")
+colnames(MediaReportQuantity) <- c("University_Name","Media_Impact", "Year")
 colnames(GDP) <- c("Province","GDP", "Year")
-colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
+colnames(Ranking) <- c("University_Name","Province","Ranking_Scores", "Year")
 
 TempT <- merge(UniversityAdmission, Ranking,all.x=TRUE)
 TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)

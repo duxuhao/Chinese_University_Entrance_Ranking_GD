@@ -61,11 +61,11 @@ for (a in 2009:2014) {
 	}
 	
 	Quantity <- Quantity/Quantity[1]
-	Temp <- cbind(as.character(UniName),  Quantity, rep(a+1,dim(Media)[1]))
+	Temp <- cbind(as.character(UniName),  Quantity, rep(a,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
-	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a+1,dim(GDPData)[1]))
+	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a,dim(GDPData)[1]))
 	GDP <- rbind(GDP,Temp2)
-	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a+1,dim(RankingData)[1]))
+	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a,dim(RankingData)[1]))
 	Ranking <- rbind(Ranking,Temp3)
 }
 
