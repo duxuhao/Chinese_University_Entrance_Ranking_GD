@@ -44,7 +44,7 @@ file1 <- "CuaaMediaRanking.xlsx" # The media impact factor
 file2 <- "ProvinceGDP2.xlsx" # the GDP of different city
 file3 <- "CuaaQualityRanking.xlsx" # the school ranking
 
-for (a in 2009:2014) {
+for (a in 2009:2015) {
 	Media <- read.xlsx(file1, sheetIndex=as.character(a))
 	GDPData <- read.xlsx(file2, sheetIndex=as.character(a))
 	RankingData <- read.xlsx(file3, sheetIndex=as.character(a))
@@ -59,13 +59,15 @@ for (a in 2009:2014) {
 		Quantity <- Media$新闻
 	} else {Quantity <- Media$得分
 	}
-	
+	print(a)
 	Quantity <- Quantity/Quantity[1]
 	Temp <- cbind(as.character(UniName),  Quantity, rep(a,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
 	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a,dim(GDPData)[1]))
+	
 	GDP <- rbind(GDP,Temp2)
 	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a,dim(RankingData)[1]))
+	print(a)
 	Ranking <- rbind(Ranking,Temp3)
 }
 
