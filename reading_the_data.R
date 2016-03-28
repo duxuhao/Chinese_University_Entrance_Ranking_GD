@@ -57,14 +57,14 @@ for (a in 2009:2014) {
 		Quantity <- Media$新闻
 	} else {Quantity <- Media$得分
 	}
-	print(a)
+	n <- a + 1 #when n == a, it means the data we use is the same year with the admission year, when n == a + 1, it means the data we use is the previous yea
 	Quantity <- Quantity/Quantity[1]
-	Temp <- cbind(as.character(UniName),  Quantity, rep(a+1,dim(Media)[1]))
+	Temp <- cbind(as.character(UniName),  Quantity, rep(n,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
-	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a+1,dim(GDPData)[1]))
+	Temp2 <- cbind(as.character(CityName), CityGDP, rep(n,dim(GDPData)[1]))
 	
 	GDP <- rbind(GDP,Temp2)
-	Temp3 <- cbind(as.character(UniversityName), RankingScore, rep(a+1,dim(RankingData)[1]))
+	Temp3 <- cbind(as.character(UniversityName), RankingScore, rep(n,dim(RankingData)[1]))
 	Ranking <- rbind(Ranking,Temp3)
 }
 
@@ -82,4 +82,5 @@ TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
 TempT3 <- merge(TempT2,UniversityLocation,all.x = TRUE)
 UniversityData <- merge(TempT3,GDP,all.x = TRUE)
 
-write.csv(UniversityData, "UniversityData2.csv")
+#write.csv(UniversityData, "UniversityData.csv")
+write.csv(UniversityData, "UniversityDataPreviousYearPrediction.csv")
