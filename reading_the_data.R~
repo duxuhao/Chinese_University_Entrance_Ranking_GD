@@ -11,7 +11,7 @@ UniversityAdmission <- data.frame(UNiversityName = as.character(),
 
 
 for (a in 2010:2015) {
-	ScienceFile <- read.xlsx(fileScience, sheetIndex=as.character(a))
+	ScienceFile <- read.xlsx(fileScience, sheetIndex=as.character(a))	
 	LiberalArtFile <- read.xlsx(fileLiberalArt, sheetIndex=as.character(a))
 	ScienceName <- ScienceFile$院校名称
 	LiberalArtName <- LiberalArtFile$院校名称
@@ -19,8 +19,8 @@ for (a in 2010:2015) {
 	LiberalArtPlan <- LiberalArtFile$计划
 	ScienceLowest <- ScienceFile$最低
 	LiberalArtLowest <- LiberalArtFile$最低
-	Temp <- cbind(as.character(ScienceName), rep("Science",dim(ScienceFile)[1]), SciencePlan, as.character(ScienceLowest), rep(a,dim(ScienceFile)[1]))
-	Temp2 <- cbind(as.character(LiberalArtName), rep("LiberalArt",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
+	Temp <- cbind(as.character(ScienceName), rep("理科",dim(ScienceFile)[1]), SciencePlan, as.character(ScienceLowest), rep(a,dim(ScienceFile)[1]))
+	Temp2 <- cbind(as.character(LiberalArtName), rep("文科",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
 	T <- rbind(Temp, Temp2)
 	UniversityAdmission <- rbind(UniversityAdmission,T)
 }
@@ -36,7 +36,6 @@ GDP <- data.frame(CityName = as.character(),
 		Year = as.numeric())
 
 Ranking <- data.frame(UniversityName = as.character(),
-		Province = as.character(),
 		Ranking = as.numeric(),
 		Year = as.numeric())
 
@@ -50,7 +49,6 @@ for (a in 2009:2015) {
 	RankingData <- read.xlsx(file3, sheetIndex=as.character(a))
 	CityName <- GDPData$地区
 	UniName <- Media$学校
-	Province <- RankingData$所在
 	
 	UniversityName <- RankingData$学校
 	CityGDP <- GDPData$本币
@@ -64,18 +62,24 @@ for (a in 2009:2015) {
 	Temp <- cbind(as.character(UniName),  Quantity, rep(a,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
 	Temp2 <- cbind(as.character(CityName), CityGDP, rep(a,dim(GDPData)[1]))
-	print(a)
+	
 	GDP <- rbind(GDP,Temp2)
-	Temp3 <- cbind(as.character(UniversityName), as.character(Province), RankingScore, rep(a,dim(RankingData)[1]))
+	Temp3 <- cbind(as.character(UniversityName), RankingScore, rep(a,dim(RankingData)[1]))
 	Ranking <- rbind(Ranking,Temp3)
 }
 
+UniversityLocation <- read.xlsx("UniversityLocation.xlsx", sheetIndex=1)
+UniversityLocation <- unique(UniversityLocation)
+colnames(UniversityLocation) <- c("Province","University_Name")
+
+
 colnames(MediaReportQuantity) <- c("University_Name","Media_Impact", "Year")
 colnames(GDP) <- c("Province","GDP", "Year")
-colnames(Ranking) <- c("University_Name","Province","Ranking_Scores", "Year")
+colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
 
 TempT <- merge(UniversityAdmission, Ranking,all.x=TRUE)
 TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
-UniversityData <- merge(TempT2,GDP,all.x = TRUE)
+TempT3 <- merge(TempT2,UniversityLocation,all.x = TRUE)
+UniversityData <- merge(TempT3,GDP,all.x = TRUE)
 
 write.csv(UniversityData, "UniversityData.csv")
