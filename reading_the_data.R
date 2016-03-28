@@ -40,19 +40,19 @@ Ranking <- data.frame(UNiversityName = as.character(),
 		Ranking = as.numeric(),
 		Year = as.numeric())
 file1 <- "CuaaMediaRanking.xlsx" # The media impact factor
-file2 <- "GDP.xlsx" # the GDP of different city
+file2 <- "ProvinceGDP2.xlsx" # the GDP of different city
 file3 <- "CuaaQualityRanking.xlsx" # the school ranking
 
 for (a in 2009:2015) {
 	Media <- read.xlsx(file1, sheetIndex=as.character(a))
 	GDPData <- read.xlsx(file2, sheetIndex=as.character(a))
 	RankingData <- read.xlsx(file3, sheetIndex=as.character(a))
-	CityName <- GDPData$城市
+	CityName <- GDPData$地区
 	UniName <- Media$学校
 	Province <- Media$所在
 	
 	UniversityName <- RankingData$学校
-	CityGDP <- GDPData$GDP
+	CityGDP <- GDPData$本币
 	RankingScore <- RankingData$总分
 	if (length(grep("新闻",names(Media))) != 0) {
 		Quantity <- Media$新闻
@@ -69,8 +69,11 @@ for (a in 2009:2015) {
 }
 
 colnames(MediaReportQuantity) <- c("University_Name","Province","Media_Impact", "Year")
-colnames(GDP) <- c("City_Name","GDP", "Year")
+colnames(GDP) <- c("Province","GDP", "Year")
 colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
 
 TempT <- merge(UniversityAdmission, Ranking,all.x=TRUE)
-UniversityData <- merge(TempT,MediaReportQuantity,all.x = TRUE)
+TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
+UniversityData <- merge(TempT2,GDP,all.x = TRUE)
+
+write.csv(UniversityData, "UniversityData.csv")
