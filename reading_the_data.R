@@ -35,6 +35,10 @@ GDP <- data.frame(CityName = as.character(),
 		GDPNumber = as.numeric(),
 		Year = as.numeric())
 
+Population <- data.frame(CityName = as.character(),
+		Population = as.numeric(),
+		Year = as.numeric())
+
 Ranking <- data.frame(UniversityName = as.character(),
 		Ranking = as.numeric(),
 		Year = as.numeric())
@@ -42,13 +46,21 @@ Ranking <- data.frame(UniversityName = as.character(),
 file1 <- "CuaaMediaRanking.xlsx" # The media impact factor
 file2 <- "ProvinceGDP2.xlsx" # the GDP of different city
 file3 <- "CuaaQualityRanking.xlsx" # the school ranking
+file4 <- "TotalPopulation.xlsx" #
+file5 <- "StudentPopulation.xlsx" #
 
 for (a in 2009:2014) {
 	Media <- read.xlsx(file1, sheetIndex=as.character(a))
 	GDPData <- read.xlsx(file2, sheetIndex=as.character(a))
 	RankingData <- read.xlsx(file3, sheetIndex=as.character(a))
+	PopulationD <- read.xlsx(file4, sheetIndex=as.character(a))
+	Student <- read.xlsx(file5, sheetIndex=as.character(a))
+	Population[,1] <- gsub("[[:blank:]]","",Population[,1])
 	CityName <- GDPData$地区
 	UniName <- Media$学校
+	CityP <- PopulationD$地区
+	people <- PopulationD$人口
+	
 	
 	UniversityName <- RankingData$学校
 	CityGDP <- GDPData$本币
@@ -66,6 +78,10 @@ for (a in 2009:2014) {
 	GDP <- rbind(GDP,Temp2)
 	Temp3 <- cbind(as.character(UniversityName), RankingScore, rep(n,dim(RankingData)[1]))
 	Ranking <- rbind(Ranking,Temp3)
+	
+	Temp4 <- cbind(as.character(CityP), people, rep(n,dim(PopulationD)[1]))
+	Population <- rbind(Population, Temp4)
+	
 }
 
 UniversityLocation <- read.xlsx("UniversityLocation.xlsx", sheetIndex=1)
@@ -76,11 +92,13 @@ colnames(UniversityLocation) <- c("Province","University_Name")
 colnames(MediaReportQuantity) <- c("University_Name","Media_Impact", "Year")
 colnames(GDP) <- c("Province","GDP", "Year")
 colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
+colnames(Population) <- c("Province","Population", "Year")
 
 TempT <- merge(UniversityAdmission, Ranking,all.x=TRUE)
 TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
 TempT3 <- merge(TempT2,UniversityLocation,all.x = TRUE)
-UniversityData <- merge(TempT3,GDP,all.x = TRUE)
+TempT4 <- merge(TempT3,GDP,all.x = TRUE)
+UniversityData <- merge(TempT4,Population,all.x = TRUE)
 
 #write.csv(UniversityData, "UniversityData.csv")
-write.csv(UniversityData, "UniversityDataPreviousYearPrediction.csv")
+write.csv(UniversityData, "UniversityDataUsed.csv")
