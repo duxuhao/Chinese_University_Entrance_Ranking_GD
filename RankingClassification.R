@@ -23,7 +23,8 @@ GD <- PlanProvince[PlanProvince$Province==PlanProvince$Province[10],]
 ggplot(GD,aes(x=Year,y=Planned_Quantity_for_enrolling)) + geom_bar(stat="identity")
 
 Eco <- unique(cbind(Dataset[,c("Year","Province")],Dataset$GDP / Dataset$Population))
-
+colnames(Eco) <- c("Year","Province","GDP_Per")
+ggplot(Eco[nrow(Eco):1,],aes(x=Province,y=GDP_Per,fill=as.factor(Year),width=0.8)) + geom_bar(stat="identity",position="identity")
 
 if(FALSE) {
 Science <- Dataset[Dataset$Topic == "理科",]
