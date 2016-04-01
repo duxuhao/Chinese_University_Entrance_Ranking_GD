@@ -55,7 +55,7 @@ for (a in 2009:2014) {
 	RankingData <- read.xlsx(file3, sheetIndex=as.character(a))
 	PopulationD <- read.xlsx(file4, sheetIndex=as.character(a))
 	Student <- read.xlsx(file5, sheetIndex=as.character(a))
-
+	PopulationD[,1] <- gsub("[[:blank:]]","",PopulationD[,1])
 	CityName <- GDPData$地区
 	UniName <- Media$学校
 	CityP <- PopulationD$地区
@@ -70,6 +70,7 @@ for (a in 2009:2014) {
 	} else {Quantity <- Media$得分
 	}
 	n <- a + 1 #when n == a, it means the data we use is the same year with the admission year, when n == a + 1, it means the data we use is the previous yea
+
 	Quantity <- Quantity/Quantity[1]
 	Temp <- cbind(as.character(UniName),  Quantity, rep(n,dim(Media)[1]))
 	MediaReportQuantity <- rbind(MediaReportQuantity,Temp)
