@@ -81,3 +81,8 @@ Province 2010 2011 2012 2013 2014 2015
 
 ![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2014.png )
 
+ - universities consistance in all provinces variate with years
+
+![ProvinceUniversitiesWithYears](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversitiesWithYears.png )
+
+

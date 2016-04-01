@@ -29,6 +29,7 @@ F <- table(UniversityNumber)
 Freq <- as.data.frame(F)
 Total <- aggregate(Freq$Freq,by=list(Freq$Year),FUN=sum)
 ggplot(Freq[Freq$Year==2010,],aes(x="",y=Freq,fill=Province))+ coord_polar("y")+geom_bar(stat="identity",width=1)
+ggplot(Freq,aes(x=Province,y=Freq,fill=Year))+ geom_bar(stat="identity",position="dodge",width=0.8)
 
 
 if(FALSE) {

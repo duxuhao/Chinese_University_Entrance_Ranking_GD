@@ -42,7 +42,7 @@ Several figure will be present the basic situation of the University Entrance Ex
 - The lowest admission ranking of different universities variate with years
 - etc
 - The 1A Universities quantities of each Province
-'''
+```
         Year
 Province 2010 2011 2012 2013 2014 2015
   上海     14   17   21   20   24   23
@@ -72,7 +72,11 @@ Province 2010 2011 2012 2013 2014 2015
   重庆      6    6    7    6    8   10
   陕西     17   16   20   17   17   17
   黑龙江    9    8   14   10   11   13
-'''
+```
+ - 2010 universities consistance in all provinces
+
+![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2010.png )
+
  - 2014 universities consistance in all provinces
 
 ![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2014.png )
