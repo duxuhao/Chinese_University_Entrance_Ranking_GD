@@ -23,16 +23,15 @@ All the above variables may be able to influence the choice of each student, so 
 ## The previous research on this topic
 Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction insid
 
-<<<<<<< HEAD
 ## Analysis chart
 Several figure will be present the basic situation of the University Entrance Exam in Guangdong
 
 - The admission population of different province variate with years
- - Universities in Guangdong
+ - Enrolled Student of universities in Guangdong
 
 ![GD enrroled Number](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GD enrroled Number.png )
 
-  - University outside Guangdong
+ - Enrolled Student of universities Guangdong
 
 ![Province Enrolled Number without GD](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Province Enrolled Number without GD.png )
 
