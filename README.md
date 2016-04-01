@@ -24,7 +24,8 @@ All the above variables may be able to influence the choice of each student, so 
 Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction insid
 
 - The GDP per person in each province variate with years
-![GDP_PER_PERSON]( Chinese_University_Entrance_Ranking_GD/GDP_PER_PERSON.png )
+
+![GDP_PER_PERSON](https://github/duxuhao/Chinese_University_Entrance_Ranking_GD/GDP_PER_PERSON.png )
 - The students' population variate with years in Guangdong
 - The lowest admission ranking of different universities variate with years
 - etc
