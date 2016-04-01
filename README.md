@@ -29,16 +29,15 @@ Several figure will be present the basic situation of the University Entrance Ex
 
 - The admission population of different province variate with years
  - Universities in Guangdong
+
 ![GD enrroled Number](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GD enrroled Number.png )
 
  - University outside Guangdong
+
 ![Province Enrolled Number without GD](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Province Enrolled Number without GD.png )
 
 - The GDP per person in each province variate with years
-=======
-- The GDP per person in each province variate with years
 
->>>>>>> 5f505af225aebbc5dc8708cae59337a96d770852
 ![GDP_PER_PERSON](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDP_PER_PERSON.png )
 - The students' population variate with years in Guangdong
 - The lowest admission ranking of different universities variate with years
