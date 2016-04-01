@@ -22,3 +22,12 @@ All the above variables may be able to influence the choice of each student, so 
 
 ## The previous research on this topic
 Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction inside. The baidu education do not tell us how they do it. So I think I can try to do this by myself as they got a method to do it.
+
+## Analysis chart
+Several figure will be present the basic situation of the University Entrance Exam in Guangdong
+
+- The admission population of different province variate with years
+- The GDP per person in each province variate with years
+- The students' population variate with years in Guangdong
+- The lowest admission ranking of different universities variate with years
+- etc
