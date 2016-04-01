@@ -41,3 +41,39 @@ Several figure will be present the basic situation of the University Entrance Ex
 - The students' population variate with years in Guangdong
 - The lowest admission ranking of different universities variate with years
 - etc
+- The 1A Universities quantities of each Province
+'''
+        Year
+Province 2010 2011 2012 2013 2014 2015
+  上海     14   17   21   20   24   23
+  内蒙古    2    2    3    1    2    2
+  北京     50   52   52   50   49   56
+  吉林      6    6    8    6    6    7
+  四川      8    8   10    9   11   15
+  天津      6    7    5    5    5    5
+  安徽      5    5    7    7    7    6
+  山东      8    9   10    9    8    9
+  山西      1    1    2    1    1    3
+  广东     22   22   25   24   31   33
+  广西      2    3    3    3    3    3
+  新疆      0    0    2    1    1    2
+  江苏     22   22   26   26   27   28
+  江西      2    2    4    2    4    7
+  河北      9    9   11    8    8    9
+  河南      2    2    3    2    2    4
+  浙江      3    3    3    3    5    6
+  海南      2    2    2    2    2    2
+  湖北     14   14   15   14   15   15
+  湖南      9    9   14    9   13   18
+  甘肃      2    2    2    2    2    2
+  福建      5    6    7    6    8   10
+  贵州      2    2    2    2    2    2
+  辽宁     11   11   15   12   12   15
+  重庆      6    6    7    6    8   10
+  陕西     17   16   20   17   17   17
+  黑龙江    9    8   14   10   11   13
+'''
+ - 2014 universities consistance in all provinces
+
+![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2014.png )
+
