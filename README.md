@@ -21,8 +21,9 @@ All the above variables may be able to influence the choice of each student, so 
 - The media impact
 
 ## The previous research on this topic
-Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction inside. The baidu education do not tell us how they do it. So I think I can try to do this by myself as they got a method to do it.
+Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction insid
 
+<<<<<<< HEAD
 ## Analysis chart
 Several figure will be present the basic situation of the University Entrance Exam in Guangdong
 
@@ -34,6 +35,10 @@ Several figure will be present the basic situation of the University Entrance Ex
 ![Province Enrolled Number without GD](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Province Enrolled Number without GD.png )
 
 - The GDP per person in each province variate with years
+=======
+- The GDP per person in each province variate with years
+
+>>>>>>> 5f505af225aebbc5dc8708cae59337a96d770852
 ![GDP_PER_PERSON](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDP_PER_PERSON.png )
 - The students' population variate with years in Guangdong
 - The lowest admission ranking of different universities variate with years
