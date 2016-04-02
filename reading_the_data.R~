@@ -2,6 +2,7 @@ library("xlsx")
 
 fileScience <- "ScienceAdmissionScore.xlsx"
 fileLiberalArt <- "LiberalArtAdmissionScore.xlsx"
+StudentNum <- read.csv("StudentPopulation.csv")
 
 UniversityAdmission <- data.frame(UNiversityName = as.character(),
 		Topic = as.character(),
@@ -100,8 +101,10 @@ TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
 TempT3 <- merge(TempT2,UniversityLocation,all.x = TRUE)
 TempT4 <- merge(TempT3,GDP,all.x = TRUE)
 UniversityData <- merge(TempT4,Population,all.x = TRUE)
-GDP_Per_Person <- UniversityData$GDP/UniversityData$Population
+UniversityData[,7] <- as.numeric(UniversityData[,7])
+GDP_Per_Person <- UniversityData$GDP / UniversityData$Population
 UniversityData <- cbind(UniversityData, GDP_Per_Person)
+UniversityData <- merge(UniversityData,StudentNum,all.x = TRUE)
 
 #write.csv(UniversityData, "UniversityData.csv")
 write.csv(UniversityData, "UniversityDataUsed.csv")

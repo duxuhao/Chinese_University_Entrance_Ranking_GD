@@ -39,6 +39,8 @@ Several figure will be present the basic situation of the University Entrance Ex
 
 ![GDP_PER_PERSON](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDP_PER_PERSON.png )
 - The students' population variate with years in Guangdong
+
+![GDStudentNumber](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDStudentNumber.png )
 - The lowest admission ranking of different universities variate with years
  - Science
 ![ScienceUniversityLowestRank](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ScienceUniversityLowestRank.png )
