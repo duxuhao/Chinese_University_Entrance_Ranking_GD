@@ -27,8 +27,15 @@ ggplot(Freq[Freq$Year==2010,],aes(x="",y=Freq,fill=Province))+ coord_polar("y")+
 ggplot(Freq,aes(x=Province,y=Freq,fill=Year))+ geom_bar(stat="identity",position="dodge",width=0.8)
 
 
-LRSci <- NewDataset[,c("Year","University_Name","Lowest_Ranking")][NewDataset$Topic == "理科",]
-LRArt <- NewDataset[,c("Year","University_Name","Lowest_Ranking")][NewDataset$Topic == "文科",]
+LRSci <- NewDataset[,c("Year","University_Name","Lowest_Ranking","Ranking_Scores")][NewDataset$Topic == "理科",]
+LRArt <- NewDataset[,c("Year","University_Name","Lowest_Ranking","Ranking_Scores")][NewDataset$Topic == "文科",]
+ggplot(LRSci[LRSci$Lowest_Ranking < 1000,],aes(x=Year,y=Lowest_Ranking,group=as.factor(University_Name),colour=as.factor(University_Name),width=0.8)) + geom_line()+geom_point()
+
+LRSci <- LRSci[order(LRSci$Lowest_Ranking),]
+ggplot(LRSci[LRSci$Lowest_Ranking > 35000 & LRSci$Lowest_Ranking < 60000,],aes(x=University_Name,y=Lowest_Ranking,color=Year)) + geom_line() + geom_point() + coord_flip() + scale_y_log10()
+
+LRArt <- LRArt[order(LRArt$Lowest_Ranking),]
+ggplot(LRArt[LRArt$Lowest_Ranking > 35000 & LRArt$Lowest_Ranking < 60000,],aes(x=University_Name,y=Lowest_Ranking,color=Year)) + geom_line() + geom_point() + coord_flip() + scale_y_log10()
 
 
 if(FALSE) {
