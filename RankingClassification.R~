@@ -28,8 +28,6 @@ ggplot(Freq,aes(x=Province,y=Freq,fill=Year))+ geom_bar(stat="identity",position
 
 
 LRSci <- NewDataset[,c("Year","University_Name","Lowest_Ranking")][NewDataset$Topic == "理科",]
-LRArt <- NewDataset[,c("Year","University_Name","Lowest_Ranking")][NewDataset$Topic == "文科",]
-
 
 if(FALSE) {
 Science <- Dataset[Dataset$Topic == "理科",]
