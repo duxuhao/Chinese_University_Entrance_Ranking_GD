@@ -43,9 +43,9 @@ Several figure will be present the basic situation of the University Entrance Ex
 ![GDStudentNumber](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDStudentNumber.png )
 - The lowest admission ranking of different universities variate with years
  - Science
-![ScienceUniversityLowestRank](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ScienceUniversityLowestRank.png )
+(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ScienceUniversityLowestRank.png )
  - Liberal Art
-![ArtLeberalUniversityLowestRank](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ArtLeberalUniversityLowestRank.png )
+(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ArtLeberalUniversityLowestRank.png )
 
 A more clear figure of different ranking range is include in this repo as well.
 

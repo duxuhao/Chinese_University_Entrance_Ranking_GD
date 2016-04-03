@@ -1,18 +1,14 @@
 library(caret)
 library(plotly)
 
-Dataset <- read.csv("UniversityDataUsed.csv")
-#Dataset <- Dataset[!is.na(Dataset$Lowest_Ranking),]
-Dataset[,7] <- as.numeric(Dataset[,7])
-GDP_Per_Person <- Dataset$GDP/Dataset$Population
-Dataset <- cbind(Dataset, GDP_Per_Person)
-NewDataset <- Dataset[,c("Year","Province","Topic","University_Name","Ranking_Scores","Media_Impact","GDP_Per_Person","Plan_Number","Lowest_Ranking")]
+Dataset <- read.csv("UniversityDataUsed.csv") #read the data
+NewDataset <- Dataset[,c("Year","Province","Topic","University_Name","Ranking_Scores","Media_Impact","GDP_Per_Person","Plan_Number","Lowest_Ranking")] # reconstruct the data with the variable I want in this anasys
 
 
-DF <- Dataset[,c("Province","Year","Plan_Number")]
-PlanProvince <- aggregate(DF$Plan_Number,by=list(DF$Province,DF$Year),FUN=sum)
+DF <- Dataset[,c("Province","Year","Plan_Number")]# obtain the enrolled student number
+PlanProvince <- aggregate(DF$Plan_Number,by=list(DF$Province,DF$Year),FUN=sum) #sum the data with the same value in column Province and Year
 colnames(PlanProvince) <- c("Province","Year","Planned_Quantity_for_enrolling")
-NoGD <- PlanProvince[PlanProvince$Province!=PlanProvince$Province[10],]
+NoGD <- PlanProvince[PlanProvince$Province!=PlanProvince$Province[10],]# extract Gaungdong
 ggplot(NoGD,aes(x=Province,y=Planned_Quantity_for_enrolling,fill=as.factor(Year),width=0.8)) + geom_bar(stat="identity", position="dodge")
 GD <- PlanProvince[PlanProvince$Province==PlanProvince$Province[10],]
 ggplot(GD,aes(x=Year,y=Planned_Quantity_for_enrolling)) + geom_bar(stat="identity")
@@ -21,13 +17,14 @@ Eco <- unique(cbind(Dataset[,c("Year","Province")],Dataset$GDP / Dataset$Populat
 colnames(Eco) <- c("Year","Province","GDP_Per_Person")
 ggplot(Eco[nrow(Eco):1,],aes(x=Province,y=GDP_Per_Person,fill=as.factor(Year),width=0.8)) + geom_bar(stat="identity",position="identity")
 
-Freq <- as.data.frame(table(Dataset[,c("Province","Year")]))
-Total <- aggregate(Freq$Freq,by=list(Freq$Year),FUN=sum)
+
+Freq <- as.data.frame(table(Dataset[,c("Province","Year")]))# See the appearance frequency of the province, 1 appearance corresponding to 1 university in that province 
+Total <- aggregate(Freq$Freq,by=list(Freq$Year),FUN=sum)#
 ggplot(Freq[Freq$Year==2010,],aes(x="",y=Freq,fill=Province))+ coord_polar("y")+geom_bar(stat="identity",width=1)
 ggplot(Freq,aes(x=Province,y=Freq,fill=Year))+ geom_bar(stat="identity",position="dodge",width=0.8)
 
 
-LRSci <- NewDataset[,c("Year","University_Name","Lowest_Ranking","Ranking_Scores")][NewDataset$Topic == "理科",]
+LRSci <- NewDataset[,c("Year","University_Name","Lowest_Ranking","Ranking_Scores")][NewDataset$Topic == "理科",]# extract the Science topic with Year, University, Lowest Ranking and ranking socre
 LRArt <- NewDataset[,c("Year","University_Name","Lowest_Ranking","Ranking_Scores")][NewDataset$Topic == "文科",]
 ggplot(LRSci[LRSci$Lowest_Ranking < 1000,],aes(x=Year,y=Lowest_Ranking,group=as.factor(University_Name),colour=as.factor(University_Name),width=0.8)) + geom_line()+geom_point()
 
