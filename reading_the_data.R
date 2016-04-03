@@ -96,7 +96,7 @@ colnames(GDP) <- c("Province","GDP", "Year")
 colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
 colnames(Population) <- c("Province","Population", "Year")
 
-UnivName <- UniversityAdmission$University_Name_location
+UnivName <- UniversityAdmission$University_Name_Location
 UnivName <- sub("大学", "大学.o", UnivName)
 UnivName <- sub("学院", "学院.o", UnivName)
 T <- unlist(strsplit(UnivName,"\\."))
@@ -108,8 +108,6 @@ TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
 TempT3 <- merge(TempT2,UniversityLocation,all.x = TRUE)
 TempT4 <- merge(TempT3,GDP,all.x = TRUE)
 UniversityData <- merge(TempT4,Population,all.x = TRUE)
-UniversityData[,7] <- as.numeric(UniversityData[,7])
-
 UniversityData <- merge(UniversityData,StudentNum,all.x = TRUE)
 
 #write.csv(UniversityData, "UniversityData.csv")
