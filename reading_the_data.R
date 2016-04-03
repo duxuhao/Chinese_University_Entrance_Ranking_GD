@@ -26,7 +26,7 @@ for (a in 2010:2015) {
 	UniversityAdmission <- rbind(UniversityAdmission,T)
 }
 
-colnames(UniversityAdmission) <- c("University_Name","Topic", "Plan_Number", "Lowest_Ranking", "Year")
+colnames(UniversityAdmission) <- c("University_Name_location","Topic", "Plan_Number", "Lowest_Ranking", "Year")
 
 MediaReportQuantity <- data.frame(UniversityName = as.character(),
 				MeadiaReportNumber = as.numeric(),
@@ -95,6 +95,13 @@ colnames(MediaReportQuantity) <- c("University_Name","Media_Impact", "Year")
 colnames(GDP) <- c("Province","GDP", "Year")
 colnames(Ranking) <- c("University_Name","Ranking_Scores", "Year")
 colnames(Population) <- c("Province","Population", "Year")
+
+UnivName <- UniversityAdmission$University_Name_location
+UnivName <- sub("大学", "大学.o", UnivName)
+UnivName <- sub("学院", "学院.o", UnivName)
+T <- unlist(strsplit(UnivName,"\\."))
+University_Name <- matrix(T, nrow=2)[1,]
+UniversityAdmission <- rbind(UniversityAdmission,University_Name)
 
 TempT <- merge(UniversityAdmission, Ranking,all.x=TRUE)
 TempT2 <- merge(TempT,MediaReportQuantity,all.x = TRUE)
