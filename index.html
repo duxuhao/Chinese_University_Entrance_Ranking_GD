@@ -345,7 +345,7 @@ table#t01 tr	{
 <ul>
 <li>The figure is generated in the following program with R</li>
 
-<script>
+<script language="R">
   library(caret)
   Dataset <- read.csv("UniversityDataUsed.csv") #read the data
   NewDataset <- Dataset[,c("Year","Province","Topic","University_Name","Ranking_Scores","Media_Impact","GDP_Per_Person","Plan_Number","Lowest_Ranking")] # reconstruct the data with the variable I want in this anasys
