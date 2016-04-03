@@ -37,15 +37,38 @@
 
 
 <p>The table and figure presents the 1A Universities in different University (by analysing the distribution of the province name appears)</p>
-<table style="width:100%" id="t01">
+<style>
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#t01 th	{
+    background-color: black;
+    color: white;
+}
+</style>
+<table id="t01">
   <tr>
-    <td>Province</td>
-    <td>2010</td>		
-    <td>2011</td>
-    <td>2012</td>		
-    <td>2013</td>
-    <td>2014</td>		
-    <td>2015</td>
+    <th>Province</th>
+    <th>2010</th>		
+    <th>2011</th>
+    <th>2012</th>		
+    <th>2013</th>
+    <th>2014</th>		
+    <th>2015</th>
   </tr> 
   <tr>
     <td>Shanghai</td>
