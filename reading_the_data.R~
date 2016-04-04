@@ -120,4 +120,4 @@ UniversityData <- merge(Dataset, A1_Number, all.x=TRUE)
 Ranking_Percentage <- UniversityData$Lowest_Ranking/UniversityData$X1A_Number
 UniversityData <- cbind(UniversityData, Ranking_Percentage)
 
-write.csv(UniversityData, "UniversityData.csv")
+write.csv(UniversityData, "UniversityDataUsed.csv")
