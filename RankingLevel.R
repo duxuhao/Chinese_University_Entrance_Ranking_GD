@@ -13,7 +13,7 @@ for (i in 1:N+1) {
 	}
 
 Dataset <- cbind(Dataset, Level)
-UniversityLevel <- Dataset[,c("Year","University_Name_Location","Province","Topic","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
+UniversityLevel <- Dataset[,c("Year","Ranking_Scores","Province","Topic","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
 write.csv(UniversityLevel, "UniversityLevel.csv")
 
 

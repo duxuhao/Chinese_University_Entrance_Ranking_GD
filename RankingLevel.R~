@@ -9,11 +9,11 @@ Range <- c(0,T)
 
 Level <- Dataset$Lowest_Ranking
 for (i in 1:N+1) {
-	Level[Dataset$Ranking_Percentage <= Range[i] & Dataset$Ranking_Percentage > Range[i-1] ] <- Ranking[i-1]
+	Level[Dataset$Ranking_Percentage <= Range[i] & Dataset$Ranking_Percentage > Range[i-1] ] <- Ranking2[i-1]
 	}
 
 Dataset <- cbind(Dataset, Level)
-UniversityLevel <- Dataset[,c("Year","University_Name_Location","Province","Topic","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
+UniversityLevel <- Dataset[,c("Year","Ranking_Scores","Province","Topic","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
 write.csv(UniversityLevel, "UniversityLevel.csv")
 
 
@@ -40,7 +40,12 @@ performance <- confusionMatrix(pre,Testing$Level)
 print(performance)
 performance_prune <- confusionMatrix(pre_prune,Testing$Level)
 print(performance_prune)
+
 #random forest
 library(randomForest)
 ran <- randomForest(Level ~ ., data = Training, importance=TRUE, ntree = 10000)
+print(ran)
+ran_pre <- predict(ran, data = Testing)
+table(observed = Testing$Level, predicted = ran_pre)
+
 print(ran)
