@@ -34,29 +34,29 @@ classifiers = [
 	RandomForestClassifier(),
 	AdaBoostClassifier(),]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.7)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
 
 for name, clf in zip(names, classifiers):
 	clf.fit(X_train, y_train)
         score = clf.score(X_test, y_test)
 	print name + ": " + str(score)
-'''
+
 #pybrain
-ds = SupervisedDataSet(5,1)
-test = SupervisedDataSet(5,1)
+ds = SupervisedDataSet(6,1)
+test = SupervisedDataSet(6,1)
 for index in range(len(X_train)):
 		ds.addSample(X_train[index:index+1],y_train[index:index+1])
 
 for index in range(len(X_test)):
-		ds.addSample(X_test[index:index+1],y_test[index:index+1])
+		test.addSample(X_test[index:index+1],y_test[index:index+1])
 
-net = buildNetwork(5,10,1)
+net = buildNetwork(6,10,10,1)
 trainer = BackpropTrainer(net, ds)
 trainer.train()
-trainer.trainUntilConvergence(maxEpochs = 999)
+trainer.trainUntilConvergence(maxEpochs = 2000)
 Pre_NN = np.round(net.activateOnDataset(test))
 print('Neural Network: ' + str(np.corrcoef(Pre_NN.T,y_test.T)[0][1]))
-'''
+
 
 	
 
