@@ -5,6 +5,7 @@ fileLiberalArt <- "LiberalArtAdmissionScore.xlsx"
 StudentNum <- read.csv("StudentPopulation.csv")
 
 UniversityAdmission <- data.frame(UNiversityName = as.character(),
+		UniversityNo = as.character(),
 		Topic = as.character(),
 		Plan = as.numeric(),
 		Lowest = as.numeric(),
@@ -16,17 +17,28 @@ for (a in 2010:2015) {
 	LiberalArtFile <- read.xlsx(fileLiberalArt, sheetIndex=as.character(a))
 	ScienceName <- ScienceFile$院校名称
 	LiberalArtName <- LiberalArtFile$院校名称
+	if (a == 2010) {
+		ScienceNo <- ScienceFile$院校号
+		LiberalArtNo <- LiberalArtFile$院校号
+		} else {
+		ScienceNo <- ScienceFile$院校代码
+		LiberalArtNo <- LiberalArtFile$院校代码
+		}
 	SciencePlan <- ScienceFile$计划
 	LiberalArtPlan <- LiberalArtFile$计划
 	ScienceLowest <- ScienceFile$最低
 	LiberalArtLowest <- LiberalArtFile$最低
-	Temp <- cbind(as.character(ScienceName), rep("理科",dim(ScienceFile)[1]), SciencePlan, as.character(ScienceLowest), rep(a,dim(ScienceFile)[1]))
-	Temp2 <- cbind(as.character(LiberalArtName), rep("文科",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
+	Temp <- cbind(as.character(ScienceName), as.character(ScienceNo),rep("理科",dim(ScienceFile)[1]), SciencePlan, as.character(ScienceLowest), rep(a,dim(ScienceFile)[1]))
+	Temp2 <- cbind(as.character(LiberalArtName), as.character(LiberalArtNo),rep("文科",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
+	print(a)
 	T <- rbind(Temp, Temp2)
+	print(a)
+	colnames(T) <- c("University_Name_Location","UniversityNo","Topic", "Plan_Number", "Lowest_Ranking", "Year")
 	UniversityAdmission <- rbind(UniversityAdmission,T)
+	colnames(UniversityAdmission) <- c("University_Name_Location","UniversityNo","Topic", "Plan_Number", "Lowest_Ranking", "Year")
 }
 
-colnames(UniversityAdmission) <- c("University_Name_Location","Topic", "Plan_Number", "Lowest_Ranking", "Year")
+colnames(UniversityAdmission) <- c("University_Name_Location","UniversityNo","Topic", "Plan_Number", "Lowest_Ranking", "Year")
 
 MediaReportQuantity <- data.frame(UniversityName = as.character(),
 				MeadiaReportNumber = as.numeric(),
