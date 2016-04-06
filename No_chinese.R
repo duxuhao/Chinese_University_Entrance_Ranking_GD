@@ -23,6 +23,6 @@ for (i in 1:N+1) {
 	}
 
 Dataset <- cbind(Dataset, Level)
-UniversityLevel <- Dataset[,c("Year","Ranking_Scores","Province","Topic","Media_Impact","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
+UniversityLevel <- Dataset[,c("Year","UniversityNo","Ranking_Scores","Province","Topic","Media_Impact","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
 Topic <- UniversityLevel[UniversityLevel$Topic == "理科",]
 write.csv(Topic, "No_chinese_feature.csv")

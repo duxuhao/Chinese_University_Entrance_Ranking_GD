@@ -30,9 +30,7 @@ for (a in 2010:2015) {
 	LiberalArtLowest <- LiberalArtFile$最低
 	Temp <- cbind(as.character(ScienceName), as.character(ScienceNo),rep("理科",dim(ScienceFile)[1]), SciencePlan, as.character(ScienceLowest), rep(a,dim(ScienceFile)[1]))
 	Temp2 <- cbind(as.character(LiberalArtName), as.character(LiberalArtNo),rep("文科",dim(LiberalArtFile)[1]), LiberalArtPlan, as.character(LiberalArtLowest), rep(a,dim(LiberalArtFile)[1]))
-	print(a)
 	T <- rbind(Temp, Temp2)
-	print(a)
 	colnames(T) <- c("University_Name_Location","UniversityNo","Topic", "Plan_Number", "Lowest_Ranking", "Year")
 	UniversityAdmission <- rbind(UniversityAdmission,T)
 	colnames(UniversityAdmission) <- c("University_Name_Location","UniversityNo","Topic", "Plan_Number", "Lowest_Ranking", "Year")
@@ -128,7 +126,7 @@ Dataset <- read.csv("UniversityDataUsed.csv")
 GDP_Per_Person <- Dataset$GDP / Dataset$Population
 UniversityData <- cbind(Dataset, GDP_Per_Person)
 A1_Number <- read.csv("1AStudent.csv")
-UniversityData <- merge(Dataset, A1_Number, all.x=TRUE)
+UniversityData <- merge(UniversityData, A1_Number, all.x=TRUE)
 Ranking_Percentage <- UniversityData$Lowest_Ranking/UniversityData$X1A_Number
 UniversityData <- cbind(UniversityData, Ranking_Percentage)
 

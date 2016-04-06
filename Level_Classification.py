@@ -18,7 +18,7 @@ df = pd.read_csv("No_chinese_feature.csv")
 #df = df[~np.isnan(df["Media_Impact"])]
 df[np.isnan(df["Ranking_Scores"])] = 0
 df[np.isnan(df["Media_Impact"])] = 0
-X =  df[["Year","Ranking_Scores","Media_Impact","Plan_Number","X1A_Number","GDP_Per_Person"]]
+X =  df[["Year","UniversityNo","Ranking_Scores","Media_Impact","Plan_Number","X1A_Number","GDP_Per_Person"]]
 y = df["Level"]
 
 print(df.shape)
@@ -42,15 +42,15 @@ for name, clf in zip(names, classifiers):
 	print name + ": " + str(score)
 
 #pybrain
-ds = SupervisedDataSet(6,1)
-test = SupervisedDataSet(6,1)
+ds = SupervisedDataSet(7,1)
+test = SupervisedDataSet(7,1)
 for index in range(len(X_train)):
 		ds.addSample(X_train[index:index+1],y_train[index:index+1])
 
 for index in range(len(X_test)):
 		test.addSample(X_test[index:index+1],y_test[index:index+1])
 
-net = buildNetwork(6,10,10,1)
+net = buildNetwork(7,10,10,1)
 trainer = BackpropTrainer(net, ds)
 trainer.train()
 trainer.trainUntilConvergence(maxEpochs = 3000)

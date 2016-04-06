@@ -128,7 +128,7 @@ Dataset <- read.csv("UniversityDataUsed.csv")
 GDP_Per_Person <- Dataset$GDP / Dataset$Population
 UniversityData <- cbind(Dataset, GDP_Per_Person)
 A1_Number <- read.csv("1AStudent.csv")
-UniversityData <- merge(Dataset, A1_Number, all.x=TRUE)
+UniversityData <- merge(UniversityData, A1_Number, all.x=TRUE)
 Ranking_Percentage <- UniversityData$Lowest_Ranking/UniversityData$X1A_Number
 UniversityData <- cbind(UniversityData, Ranking_Percentage)
 
