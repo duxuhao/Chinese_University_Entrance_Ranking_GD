@@ -1,2 +1,0 @@
-X =  df[["Year","UniversityNo","Ranking_Scores","Media_Impact","Plan_Number","X1A_Number","GDP_Per_Person"]]
-y = df["Level"]

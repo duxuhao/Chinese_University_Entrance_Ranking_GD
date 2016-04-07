@@ -3,8 +3,8 @@ Dataset <- read.csv("UniversityData.csv")
 Ranking <- c("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z") #level label
 Ranking2 <- c(1:100)
 
-N <- 59 # level quantity, control the step
-B <- 1.1 # control step
+N <- 34 # level quantity, control the step
+B <- 1.2 # control step
 
 T <- (B^((1:N))) / (B^ N)
 Range <- c(0,T)
@@ -23,6 +23,6 @@ for (i in 1:N+1) {
 	}
 
 Dataset <- cbind(Dataset, Level)
-UniversityLevel <- Dataset[,c("Year","UniversityNo","Ranking_Scores","Province","Topic","Media_Impact","Plan_Number", "GDP_Per_Person", "X1A_Number","Level")]
+UniversityLevel <- Dataset[,c("Year","UniversityNo","Ranking_Scores","Province","Topic","Media_Impact","Plan_Number", "GDP_Per_Person", "X1A_Number","Level","Lowest_Ranking","Ranking_Percentage")]
 Topic <- UniversityLevel[UniversityLevel$Topic == "理科",]
 write.csv(Topic, "No_chinese_feature.csv")
