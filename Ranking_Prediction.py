@@ -29,8 +29,9 @@ df = df[df["Lowest_Ranking"] > low]
 #df[np.isnan(df["Ranking_Scores"])] = 0
 #df[np.isnan(df["Media_Impact"])] = 0
 df = df[~np.isnan(df["GDP_Per_Person"])] #exclude some
-#X =  df[["Year","UniversityNo","Ranking_Scores","Media_Impact","Plan_Number","X1A_Number","GDP_Per_Person"]]
-X =  df[["Year","UniversityNo","Ranking_Scores","Plan_Number","X1A_Number","GDP_Per_Person"]]
+df = df[~np.isnan(df["Distance"])] #exclude some
+X =  df[["Year","UniversityNo","Ranking_Scores","Media_Impact","Distance","Plan_Number","X1A_Number","GDP_Per_Person"]]
+#X =  df[["Year","UniversityNo","Ranking_Scores","Plan_Number","X1A_Number","GDP_Per_Person"]]
 y = df["Ranking_Percentage"]
 #y=df["Lowest_Ranking"]
 #print(df.shape)

@@ -138,4 +138,6 @@ distance <- read.csv("distance.csv",header=F)
 colnames(distance) <- c("University_Name","Distance")
 UniversityData <- merge(UniversityData, distance, all.x=TRUE)
 UniversityData <- unique(UniversityData)
+UniversityData$Media_Impact[is.na(UniversityData$Media_Impact)] <- 0
+UniversityData$Ranking_Scores[is.na(UniversityData$Ranking_Scores)] <- 0
 write.csv(UniversityData, "UniversityData.csv")
