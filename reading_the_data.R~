@@ -131,7 +131,7 @@ Ranking_Percentage <- UniversityData$Lowest_Ranking/UniversityData$X1A_Number
 UniversityData <- cbind(UniversityData, Ranking_Percentage)
 
 Pinyin <- read.csv("Name_Pinyin.csv")
-UniversityData <- merge(Pinyin, UniversityData, all.x=TRUE)
+UniversityData <- merge(UniversityData, Pinyin,all.x=TRUE)
 distance <- read.csv("distance.csv",header=F)
 colnames(distance) <- c("University_Name","Distance")
 UniversityData <- merge(UniversityData, distance, all.x=TRUE)
