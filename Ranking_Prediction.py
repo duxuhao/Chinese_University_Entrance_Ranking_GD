@@ -16,6 +16,9 @@ from pybrain.tools.shortcuts import buildNetwork
 from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised.trainers import BackpropTrainer
 import itertools
+from multiprocessing import Pool
+
+pool = Pool(4)
 
 colors = itertools.cycle(["k","r","g","b","y"])
 df = pd.read_csv("UniversityData.csv") #kind of origin data
