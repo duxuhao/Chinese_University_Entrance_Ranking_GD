@@ -21,3 +21,9 @@
 * Ranking_Scores -- Divided from the University ranking of each year
 * Media_Impact -- The percetage of the release news of each university over the number of the news of No. university
 * GDP -- The GDP of the corresponding location of the university
+* University_Name_Location -- The name and campus information
+* Population -- The pupulation of the area
+* X1A_Number -- The enrolled population
+* Ranking_Percentage -- Percentage
+* University_Name_Pinyin -- Pinyin of University
+* Distance -- The distance of the university with guangzhou

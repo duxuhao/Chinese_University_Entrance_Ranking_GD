@@ -11,6 +11,7 @@ This is a repo to predict the university admission ranking in different year
  - The ecomonic of the city?
  - The house price of the city?
  - The participate students number?
+ - Should I use ranking or marks or percentage to represent the enroll information
 
 All the above variables may be able to influence the choice of each student, so that may influence the ranking. In this project, R will be used in cleaning and merging the data, doing the data pre-process like PCA and using some machinery algorithm to do the prediction. The following variables will used in analysing the data, more variables will be added:
 
@@ -19,6 +20,7 @@ All the above variables may be able to influence the choice of each student, so 
 - Previous lowest admission ranking
 - The GDP of the city
 - The media impact
+- The distance
 
 ## The previous research on this topic
 Not many articles are relating to this topic while the baidu education has a application to help you choosing the application university via the big data, which I think will do the prediction insid
@@ -29,23 +31,23 @@ Several figure will be present the basic situation of the University Entrance Ex
 - The admission population of different province variate with years
  - Enrolled Student of universities in Guangdong
 
-![GD enrroled Number](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GD enrroled Number.png )
+![GD enrroled Number](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/GD enrroled Number.png )
 
  - Enrolled Student of universities Guangdong
 
-![Province Enrolled Number without GD](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Province Enrolled Number without GD.png )
+![Province Enrolled Number without GD](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/Province Enrolled Number without GD.png )
 
 - The GDP per person in each province variate with years
 
-![GDP_PER_PERSON](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDP_PER_PERSON.png )
+![GDP_PER_PERSON](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/GDP_PER_PERSON.png )
 - The students' population variate with years in Guangdong
 
-![GDStudentNumber](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/GDStudentNumber.png )
+![GDStudentNumber](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/GDStudentNumber.png )
 - The lowest admission ranking of different universities variate with years
  - Science
-(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ScienceUniversityLowestRank.png )
+(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/ScienceUniversityLowestRank.png )
  - Liberal Art
-(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ArtLeberalUniversityLowestRank.png )
+(https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/ArtLeberalUniversityLowestRank.png )
 
 A more clear figure of different ranking range is include in this repo as well.
 
@@ -83,14 +85,20 @@ Province 2010 2011 2012 2013 2014 2015
 ```
  - 2010 universities consistance in all provinces
 
-![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2010.png )
+![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/ProvinceUniversities2010.png )
 
  - 2014 universities consistance in all provinces
 
-![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversities2014.png )
+![ProvinceUniversities2014](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/ProvinceUniversities2014.png )
 
  - universities consistance in all provinces variate with years
 
-![ProvinceUniversitiesWithYears](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/ProvinceUniversitiesWithYears.png )
+![ProvinceUniversitiesWithYears](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/ProvinceUniversitiesWithYears.png )
 
+##Prediction method
+- In the prediction section, R and python are used together and the following method is used in this prediction
+ - Random Forest
+ - Decision Tree
+ - Adaboost
+	While the result is not clear yet.
 
