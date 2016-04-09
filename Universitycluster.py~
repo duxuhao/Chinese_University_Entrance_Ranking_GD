@@ -1,5 +1,10 @@
 import pandas as pd
+from sklearn import cluster
+import matplotlib.pyplot as plt
+import numpy as np
 
 df = pd.read_csv("UniversityData.csv") #kind of origin data
-a = df[(df.Year == 2010) * (df.Topic == "理科")]
-X = a[["UniversityNo","Ranking_Scores","Distance","Plan_Number","Lowest_Ranking"]]
+#df = df.sort(['Score'],ascending = 0)
+df.Label = 0
+T = df[(df.Year == 2010) & (df.Topic == "理科")].Score
+df.df[(df.Year == 2010) & (df.Topic == "理科") & (df.Score < 680)].Label  = df[(df.Year == 2010) & (df.Topic == "理科") & (df.Score < 680)].Label + 1
