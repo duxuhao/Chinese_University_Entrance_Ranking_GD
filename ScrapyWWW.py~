@@ -4,7 +4,7 @@ import urllib2
 from bs4 import BeautifulSoup
 import sys
 
-TT = open("UniversityMarks.csv","a")
+TT = open("UniversityMarksFull.csv","a")
 TT.write("University_Name_Location")
 TT.write(",")
 website = "http://college.gaokao.com/school/tinfo/3/result/14/1/"
@@ -22,7 +22,8 @@ TT.write("Topic")
 TT.write("\n")
 Topic = ["理科","文科"]
 print "Start:"
-for i in range(700):
+for i in range(2666):
+	print "No." + str(i+1)
 	for wl in range(2):
 		website = "http://college.gaokao.com/school/tinfo/" + str(i+1) + "/result/14/" + str(wl+1) + "/"
 		sys.stdout.write(Topic[wl])

@@ -22,7 +22,9 @@ TT.write("Topic")
 TT.write("\n")
 Topic = ["理科","文科"]
 print "Start:"
+t = 5
 for i in range(2666):
+	print "No." + str(i+1)
 	for wl in range(2):
 		website = "http://college.gaokao.com/school/tinfo/" + str(i+1) + "/result/14/" + str(wl+1) + "/"
 		sys.stdout.write(Topic[wl])
@@ -36,6 +38,8 @@ for i in range(2666):
 			tag = soup.table
 			td = tag.find('td')
 			while td:
+				if t != 5:
+					TT.write("\n")
 				TT.write(name.encode('utf-8'))
 				TT.write(",")
 				for t in range(6):
