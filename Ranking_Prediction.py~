@@ -24,63 +24,52 @@ pool = Pool(4)
 colors = itertools.cycle(["k","r","g","b","y"])
 df = pd.read_csv("University.csv") #kind of origin data
 df = df[~np.isnan(df["Ranking_Scores"])] #exclude the university with no 
-df = df[df["Topic"] == "理科"] #select the topic
+#df = df[df["Topic"] == 0] #select the topic
+
 high = 50000
 low = 0
 df = df[df["Lowest_Ranking"] <= high] #select the regression range
 df = df[df["Lowest_Ranking"] > low]
+
 df = df[~np.isnan(df["GDP_Per_Person"])] #exclude some
 df = df[~np.isnan(df["Distance"])] #exclude some
-fea = ["Year","UniversityNo","Ranking_Scores","Media_Impact","Distance","Plan_Number","X1A_Number","GDP_Per_Person","Plan_Number_Total"]
+fea = ["Year","Topic","UniversityNo","Ranking_Scores","Media_Impact","Distance","Plan_Number","GDP_Per_Person","Plan_Number_Total"]
 X =  df[fea]
 y=df["Lowest_Ranking"]
 
 #scikit learn
-names = ["Random Forest", "Boost Random Forest"]
+names = ["Random Forest","Boost Random Forest"]
 
 regression = [RandomForestRegressor(random_state=0, n_estimators=5000),
 		AdaBoostRegressor(RandomForestRegressor())]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
 
-N = 0.25
+N = 0.05
 To = np.zeros(len(df))
 for name, est in zip(names[:1], regression[:1]):
 	est.fit(X_train, y_train)
         score = est.score(X_test, y_test)
-	plt.scatter(est.predict(X_test), y_test, c = next(colors),label = name)
-	plt.hold("on")
 	To = To + est.predict(X)
 	print name + ": " + str(score)
-	print "The error within " + str(N*100) + "%: " + str(100*sum((np.abs(est.predict(X)-y)/y) < N)/len(df)) + "%"
+	print "The error within " + str(N*200) + "%: " + str(100*sum((np.abs(est.predict(X_test)-y_test)/y_test) < N*2)/len(y_test)) + "%"
 	print "The error within " + str(N*100) + "%: " + str(100*sum((np.abs(est.predict(X_test)-y_test)/y_test) < N)/len(y_test)) + "%"
 	print np.mean((est.predict(X_test)-y_test)/y_test)
-	#plt.bar(range(len(fea)),est.feature_importances_)
-	#plt.xticks(range(len(fea)),fea)
+	plt.bar(range(len(fea)),est.feature_importances_)
+	plt.xticks(range(len(fea)),fea)
 
 
-plt.plot([0,50000],[0,50000])
+plt.show()
+plt.scatter(est.predict(X_test), y_test, c = next(colors),label = name)
+plt.hold("on")
+plt.plot([low,high],[low,high])
+plt.plot([low,high*0.9],[low,high*0.9],c = 'r')
+plt.plot([low,high*1.1],[low,high*1.1],c = 'r')
+plt.plot([low,high*0.95],[low,high*0.95],c = 'g')
+plt.plot([low,high*1.15],[low,high*1.15],c = 'g')
 plt.xlabel("Prediction", fontsize = 14)
 plt.ylabel("Test", fontsize = 14)
 plt.legend()
 plt.show()
-
-'''
-#pybrain
-ds = SupervisedDataSet(7,1)
-test = SupervisedDataSet(7,1)
-for index in range(len(X_train)):
-		ds.addSample(X_train[index:index+1],y_train[index:index+1])
-
-for index in range(len(X_test)):
-		test.addSample(X_test[index:index+1],y_test[index:index+1])
-
-net = buildNetwork(7,10,10,1)
-trainer = BackpropTrainer(net, ds)
-trainer.train()
-trainer.trainUntilConvergence(maxEpochs = 3000)
-Pre_NN = np.round(net.activateOnDataset(test))
-print('Neural Network: ' + str(np.corrcoef(Pre_NN.T,y_test.T)[0][1]))
-'''	
 
 

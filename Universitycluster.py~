@@ -3,36 +3,57 @@ import pandas as pd
 from sklearn import cluster
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.cross_validation import train_test_split
 
-df = pd.read_csv("UniversityDataTemp2.csv")
+df = pd.read_csv("UniversityData.csv")
 #df = df[~np.isnan(df.Score_Last_Year)]
 df['Plan_Number_Total'] = pd.Series(np.zeros(len(df)),index=df.index)
-df['Previous_Rank'] = pd.Series(np.zeros(len(df)),index=df.index)
+df['New_Label'] = pd.Series(np.zeros(len(df)),index=df.index)
 df.Label = 0
+#df = df.drop("Label",1)
+df.Topic[df.Topic == "理科"] = 1
+df.Topic[df.Topic == "文科"] = 0
+#the comment script is for obtaining the training label
 
 for y in range(2010,2016):
-	for t in ["理科","文科"]:
-		T = df[(df.Year == y) & (df.Topic == t)].Score_Last_Year
+	for t in range(2):
+		T = df[(df.Year == y) & (df.Topic == t)].Score
 		boundary = np.max(T.values)
 		a = 1
 		n = 0
 		Top = boundary + 50
 		while a:
 			try:
-				boundary = boundary - (Top - boundary) * 0.07
-				df.loc[(df.Year == y) & (df.Topic == t) & (df.Score_Last_Year < boundary),'Label']  += 1
+				boundary = boundary - (Top - boundary) * 0.01
+				df.loc[(df.Year == y) & (df.Topic == t) & (df.Score < boundary),'Label']  += 1
 				n += 1
 				boundary = np.max(T.values[T.values < boundary])
 			except:
 				a = 0
-		for s in range(n):
-			df.loc[(df.Year == y) & (df.Topic == t) & (df.Label >= s),'Plan_Number_Total'] += sum(df.loc[(df.Year == y) & (df.Topic == t) & (df.Label ==s),'Plan_Number'])
-dd = df[["Year","Lowest_Ranking","Topic","University_Name_Location"]]
-'''
-dd.loc[:,'Year'] += 1
-dd.columns = ["Year","Last_Lowest_Ranking","Topic","University_Name_Location"]
-df = df.merge(dd,on=["Year","Topic","University_Name_Location"])
-'''
-col = ["UniversityNo","University_Name","University_Name_Pinyin","University_Name_Location","Distance","Province","GDP","Population","GDP_Per_Person","Year","Student_Population","X1A_Number","Ranking_Scores","Media_Impact","Topic","Plan_Number","Plan_Number_Total","Lowest_Ranking","Label","Ranking_Percentage","Score_Last_Year"]
-dfsave = df[col]
+
+trainlabel = pd.read_csv("University_data_cluster.csv")
+est = RandomForestRegressor()
+colname = trainlabel.columns
+
+df2 = df.merge(trainlabel[["UniversityNo","Topic","Year","Lowest","Last_Ranking","Average_Ranking"]],on=["UniversityNo","Topic","Year"])
+
+df2 = df2[~np.isnan(df2.Lowest)]
+X = df2[["UniversityNo","Year","Topic","Lowest","Ranking_Scores","Last_Ranking","Average_Ranking"]]
+
+y = df2.Label
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
+est.fit(X_train,y_train)
+print est.score(X_test,y_test)
+
+df2.New_Label = est.predict(X)
+
+for y in range(2011,2016):
+	for t in range(2):
+		s = 0
+		while sum(df2.Label >= s):
+			df2.loc[(df2.Year == y) & (df2.Topic == t) & (df2.Label >= s),'Plan_Number_Total'] += sum(df2.loc[(df2.Year == y) & (df2.Topic == t) & (np.round(df2.Label) ==s),'Plan_Number'])
+			s += 1
+			
+dfsave = df2
 dfsave.to_csv("University.csv")
