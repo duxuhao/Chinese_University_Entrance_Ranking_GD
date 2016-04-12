@@ -14,15 +14,17 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Activation
 from keras.layers.recurrent import LSTM
 import itertools
-#from multiprocessing import Pool
+from multiprocessing import Pool
 from sklearn.decomposition import PCA
 import plotly.plotly as py
 import plotly.graph_objs as go
+import ggplot
+import seaborn as sns
 
-#pool = Pool(4)
+pool = Pool(4)
 
 colors = itertools.cycle(["k","g","r","b","y"])
-df = pd.read_csv("University.csv") #kind of origin data
+df = pd.read_csv("Produce_Data/University.csv") #kind of origin data
 df = df[~np.isnan(df["Ranking_Scores"])] #exclude the university with no 
 #df = df[df["Topic"] == 1] #select the topic
 
@@ -34,7 +36,7 @@ df = df[df["Lowest_Ranking"] > low]
 '''
 df = df[~np.isnan(df["GDP_Per_Person"])] #exclude some
 df = df[~np.isnan(df["Distance"])] #exclude some
-df = df[~(df["Average_Ranking"] == 0)]
+
 fea = ["UniversityNo","Average_Ranking","Last_Ranking","Distance","GDP_Per_Person","Ranking_Scores","Media_Impact","Year","Topic","Plan_Number","Plan_Number_Total"]
 New =  df[fea[:]]
 '''
@@ -69,34 +71,37 @@ for name, est in zip(names[1:], regression[1:]):
 	pre = est.predict(X_test)
 	Ave = (pre - X_test1.Last_Ranking.values)
 	adjust = np.abs(Ave/X_test1.Last_Ranking).values
-
 	Use = (adjust >= bound) & (X_test1.Last_Ranking.values < Top )
-	print(sum(Use))
-	
-	'''
-	pre[adjust > 0.3] = X_test1.Average_Ranking[adjust > 0.3] + (pre[adjust > 0.3] - X_test1.Average_Ranking[adjust > 0.3])/X_test1.Plan_Number[adjust > 0.3]
-	'''
-	print name + ": " + str(score)
-	print "The error within " + str(N*200) + "%: " + str(100*sum((np.abs(pre-y_test)/y_test) < N*2)/len(y_test)) + "%"
-	print "The error within " + str(N*100) + "%: " + str(100*sum((np.abs(pre-y_test)/y_test) < N)/len(y_test)) + "%"
-	print np.mean(np.abs(est.predict(X_test)-y_test)/y_test)
-	#plt.bar(range(len(fea)),est.feature_importances_)
-	#plt.xticks(range(len(fea)),fea)
-	#plt.show()
-	plt.scatter(pre, y_test, c = next(colors),label = name)
-	plt.hold("on")
+	print "----------------"
+	print name + ": " + str(round(1000*score)/10) + "%"
+	print "----------------"
+	print "The error within " + str(N*200) + "%: " + str(round(1000*sum((np.abs(pre-y_test)/y_test) < N*2)/len(y_test))/10) + "%"
+	print "The error within " + str(N*100) + "%: " + str(round(1000*sum((np.abs(pre-y_test)/y_test) < N)/len(y_test))/10) + "%"
+	print "The mean error: " + str(round(1000 * np.mean(np.abs(pre-y_test)/y_test))/10) + "%"
+	print "----------------"
+	with sns.axes_style('darkgrid'):
+		plt.subplot(211)
+		plt.bar(range(len(fea[3:])),est.feature_importances_)
+		plt.xticks(np.arange(len(fea[3:]))+0.5,fea[3:],fontsize=12)
+		plt.ylabel('Importance',fontsize=14)
+		plt.subplot(212)
+		plt.scatter(pre,y_test,c = 'r', label = name)
+		plt.hold("on")
+		plt.plot([low,high],[low*0.9,high*0.9],'--',[low,high], [low*1.1,high*1.1], '--', c = 'k', linewidth = 2)
+		plt.ylabel('Real Ranking',fontsize=14)
+		plt.xlabel('Prediction Ranking',fontsize=14)
 	Y_combine += pre
 	n += 1
 	print "Top university adjust"
-	pre[Use] = X_test1.Last_Ranking[Use].values
-	print "The error within " + str(N*200) + "%: " + str(100*sum((np.abs(pre-y_test)/y_test) < N*2)/len(y_test)) + "%"
-	print "The error within " + str(N*100) + "%: " + str(100*sum((np.abs(pre-y_test)/y_test) < N)/len(y_test)) + "%"
-	print np.mean(np.abs(pre-y_test)/y_test)
+	pre[Use] = X_test1.Last_Ranking[Use].values # if the top university prediction is to far away from the average one, put it to the last ranking
+	print "The error within " + str(N*200) + "%: " + str(round(1000*sum((np.abs(pre-y_test)/y_test) < N*2)/len(y_test))/10) + "%"
+	print "The error within " + str(N*100) + "%: " + str(round(1000*sum((np.abs(pre-y_test)/y_test) < N)/len(y_test))/10) + "%"
+	print "The mean error: " + str(round(1000 * np.mean(np.abs(pre-y_test)/y_test))/10) + "%"
+	print "----------------"
 
-plt.plot([low,high],[low*0.9,high*0.9],'--',[low,high], [low*1.1,high*1.1], '--', c = 'r', linewidth = 2)
 plt.legend()
 plt.xlim((0,50000))
-#plt.show()
+plt.show()
 
 
 '''

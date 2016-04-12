@@ -100,25 +100,5 @@ Province 2010 2011 2012 2013 2014 2015
  - Random Forest
  - Decision Tree
  - Adaboost
-
-##Result
-
-The prediction tree do the best job, here is the result:
-
-Features include:
-UniversityNo,Average_Ranking,Last_Ranking,Distance,GDP_Per_Person,Ranking_Scores,Media_Impact,Year,Topic,Plan_Number,Plan_Number_Total
-----------------
-Decision Tree: 99.7%
-----------------
-The error within 10.0%: 82.3%
-The error within 5.0%: 68.1%
-The mean error: 15.3%
-----------------
-Top university adjust
-The error within 10.0%: 83.5%
-The error within 5.0%: 67.8%
-The mean error: 6.1%
-----------------
-
-![Prediction](https://github.com/duxuhao/Chinese_University_Entrance_Ranking_GD/blob/master/Analsys_Figure/Prediction.png )
+	While the result is not clear yet.
 
