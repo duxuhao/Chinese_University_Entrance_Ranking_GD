@@ -3,8 +3,9 @@ import pandas as pd
 from sklearn import cluster
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 from sklearn.cross_validation import train_test_split
+from sklearn.tree import DecisionTreeRegressor
 
 df = pd.read_csv("UniversityData.csv")
 #df = df[~np.isnan(df.Score_Last_Year)]
@@ -33,12 +34,13 @@ for y in range(2010,2016):
 				a = 0
 
 trainlabel = pd.read_csv("University_data_cluster.csv")
-est = RandomForestRegressor()
+est = AdaBoostRegressor(DecisionTreeRegressor()
 colname = trainlabel.columns
 
 df2 = df.merge(trainlabel[["UniversityNo","Topic","Year","Lowest","Last_Ranking","Average_Ranking"]],on=["UniversityNo","Topic","Year"])
 
 df2 = df2[~np.isnan(df2.Lowest)]
+df2 = df2[~(df2["Average_Ranking"] == 0)]
 X = df2[["UniversityNo","Year","Topic","Lowest","Ranking_Scores","Last_Ranking","Average_Ranking"]]
 
 y = df2.Label
